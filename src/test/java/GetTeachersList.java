@@ -26,23 +26,24 @@ public class GetTeachersList {
         driver.findElement(By.cssSelector("h2")).click(); // просто кликаем на заголовок чтобы свернуть меню которое может быть открыто
 
 
-        int scrooldePixels = 0;
+        int scrooledPixels = 0;
         Object windowHeight = ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");  //берем высоту страницы в пикселях
         int windowHeightInt = ((Number) windowHeight).intValue(); // приводим обьект который вернул js к int
 
         do {
             try {
+                ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,3000)");  // сразу скролим к месту где ожидаем блок
                 WebElement element = driver.findElement(By.cssSelector("#swiper-coaches"));
-                WebDriverWait wait = new WebDriverWait(driver, 2);
+                WebDriverWait wait = new WebDriverWait(driver, 5);
                 wait.until(ExpectedConditions.visibilityOf(element));
                 if (element != null) {
                     break;                  // выходим из цикла если нашли блок с учетелями
                 }
-            } catch (RuntimeException e) {
+            } catch (NoSuchElementException e) {   //NoSuchElementException падает все же и теперь могу словить и обработать, хотя раньше неловился
                 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,800)");  // если не нашли, то скролим на 800 пикселей
-                scrooldePixels += 800;
+                scrooledPixels += 800;
             }
-        } while (scrooldePixels <= windowHeightInt);  // выходим из цикла когда доскролим до конца страницы
+        } while (scrooledPixels <= windowHeightInt);  // выходим из цикла когда доскролим до конца страницы
 
         List<WebElement> teachers = driver.findElements(By.cssSelector("span.coach-card_name"));
 
