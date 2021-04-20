@@ -39,7 +39,7 @@ public class GetTeachersList {
                 if (element != null) {
                     break;                  // выходим из цикла если нашли блок с учетелями
                 }
-            } catch (NoSuchElementException e) {   //NoSuchElementException падает все же и теперь могу словить и обработать, хотя раньше неловился
+            } catch (NoSuchElementException | TimeoutException e) {   //NoSuchElementException падает все же и теперь могу словить и обработать, хотя раньше неловился
                 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,800)");  // если не нашли, то скролим на 800 пикселей
                 scrooledPixels += 800;
             }
