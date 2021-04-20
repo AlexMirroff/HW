@@ -16,7 +16,7 @@ public class GetTeachersList {
 
         WebDriver driver = new WebDriverFactory().getDriver();
 
-        driver.get(ConfigProvider.BASE_URL + "courses/qa-automation-kiev");
+        driver.get(ConfigProvider.BASE_URL);
 
         driver.findElement(By.cssSelector("#coursesMenuDesktopTrigger")).click();
         driver.findElement(By.cssSelector("#coursesMenuControlPanel > ul > li:nth-child(2) > button")).click();
