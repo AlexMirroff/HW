@@ -10,7 +10,9 @@ import java.time.Duration;
 
 public final class WaitUtils {
 
-    private WaitUtils() {}
+    private WaitUtils() {
+
+    }
 
     public static void waitUntilElementIsClickable(WebDriver driver, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, 10);

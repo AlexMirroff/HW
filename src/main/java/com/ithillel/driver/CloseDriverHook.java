@@ -9,7 +9,6 @@ public class CloseDriverHook implements Runnable {
     public CloseDriverHook(WebDriver driver) {
         this.driver = driver;
     }
-
     @Override
     public void run() {
         driver.quit();
