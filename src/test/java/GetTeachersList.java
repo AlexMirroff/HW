@@ -32,7 +32,7 @@ public class GetTeachersList {
 
         do {
             try {
-                ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,3000)");  // сразу скролим к месту где ожидаем блок
+                ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,1000)");
                 WebElement element = driver.findElement(By.cssSelector("#swiper-coaches"));
                 WebDriverWait wait = new WebDriverWait(driver, 2);
                 wait.until(ExpectedConditions.visibilityOf(element));
