@@ -14,6 +14,7 @@ public final class ConfigProvider {
 
     public static final String BROWSER = prop.getProperty("browser");
     public static final String BASE_URL = prop.getProperty("base.url");
+    public static final String BASE_BLOG_URL = prop.getProperty("base.blog.url");
     public static final int IMPLICIT_WAIT = Integer.parseInt(prop.getProperty("implicit.wait"));
 
     //---------------Properties-end--------------------------
