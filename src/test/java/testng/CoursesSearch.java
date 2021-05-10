@@ -43,17 +43,14 @@ public class CoursesSearch extends UITest {
         homePage.getCoursesSearchField().clear();
         homePage.getCoursesSearchField().sendKeys(input);
 
-        int wait = 100;
 
-        while (true) {  // если к-во найденных результатов равно ожидаемым выходим из цыкла
+        for (int i = 1; i <= 300; i++) {  // если к-во найденных результатов равно ожидаемым выходим из цыкла
             if (homePage.getFoundItems().size() == Integer.parseInt(expectedItemsText[0])) break;
             else {
-                if (wait <= 30000) {
+                if (i < 300) {
                     try {
-                        Thread.sleep(wait); // если не равно, то ждем в течении 30 сек, проверяя через каждые 0,1 сек
-                    } catch (InterruptedException e) {
-                    }
-                    wait += 100;
+                        Thread.sleep(100); // если не равно, то ждем в течении 30 сек, проверяя через каждые 0,1 сек
+                    } catch (InterruptedException e) { }
                 } else {
                     //не нашли ожидаемое к-во в течении 30 сек и тут получим AssertionError
                     Assert.assertEquals(homePage.getFoundItems().size(), Integer.parseInt(expectedItemsText[0]));
