@@ -17,11 +17,11 @@ public class CoursesSearch extends UITest {
     @DataProvider
     public Object[][] data() {
         return new Object[][]{
-                {"front end", new String[]{"3", "Front-End Pro", "Front-End Basic", "ІТ Recruitment"}},
-                {"qa", new String[]{"4", "QA Automation", "QA Manual", "QA Automation — Python", "Сертификация ISTQB для тестировщиков"}},
-                {"java", new String[]{"3", "Java Elementary", "Introduction Java", "Java Enterprise"}},
-                {"frontend", new String[]{"1", "Front-End Basic"}},
-                {"дизайн", new String[]{"2", "Основы дизайна", "UI/UX Design"}}
+                {"front end", new String[]{"Front-end Pro", "Front-End Basic", "ІТ Recruitment"}},
+                {"qa", new String[]{"QA Automation", "QA Manual", "QA Automation — Python", "Сертификация ISTQB для тестировщиков"}},
+                {"java", new String[]{"Java Elementary", "Introduction Java", "Java Enterprise"}},
+                {"frontend", new String[]{"Front-End Basic"}},
+                {"дизайн", new String[]{"Основы дизайна", "UI/UX Design"}}
         };
     }
 
@@ -45,12 +45,13 @@ public class CoursesSearch extends UITest {
 
 
         for (int i = 1; i <= 300; i++) {  // если к-во найденных результатов равно ожидаемым выходим из цыкла
-            if (homePage.getFoundItems().size() == Integer.parseInt(expectedItemsText[0])) break;
+            if (homePage.getFoundItems().size() == expectedItemsText.length) break;
             else {
                 if (i < 300) {
                     try {
                         Thread.sleep(100); // если не равно, то ждем в течении 30 сек, проверяя через каждые 0,1 сек
-                    } catch (InterruptedException e) { }
+                    } catch (InterruptedException e) {
+                    }
                 } else {
                     //не нашли ожидаемое к-во в течении 30 сек и тут получим AssertionError
                     Assert.assertEquals(homePage.getFoundItems().size(), Integer.parseInt(expectedItemsText[0]));
@@ -59,7 +60,7 @@ public class CoursesSearch extends UITest {
         }
         String[] itemsText = homePage.getItemsText();
         for (int i = 0; i < itemsText.length; i++) {
-            Assert.assertEquals(itemsText[i], expectedItemsText[i + 1]);
+            Assert.assertEquals(itemsText[i], expectedItemsText[i]);
         }
         log.debug("Actual result: " + Arrays.asList(itemsText));
         homePage.getCoursesMenu().click(); // закрываем меню чтобы вернуться в исходное состояние
