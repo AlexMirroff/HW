@@ -2,7 +2,7 @@ Feature: certificate Check
   As a user,
   I want to enter invalid certificate number and to see "Сертификат не найден"
 
-  Scenario Outline:
+  Scenario Outline:  Verify "Сертификат не найден" message appears when invalid value inputted
     Given I am on Certificate page
     Then I can see Certificate input field
     When I fill out the following parameters:
