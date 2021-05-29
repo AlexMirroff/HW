@@ -38,31 +38,15 @@ public class User {
         } else return "female";
     }
 
-    /*
-
-    public User() {
-        this.name = "user_name_"+getRandomInt();
-        this.age = getRandomInt();
-        this.email = this.name+"@gmail.com";
-        this.gender = sexGenerator();
-    }*/
-
     public static void main(String[] args) {
 
-        Map<String, List<User>> map1 =
-                Stream.generate(User::new)
-                        .limit(20)
-                        .filter(user -> user.getAge() > 18)
-                        .filter(user -> user.getEmail() != null)
-                        .collect(Collectors.groupingBy(User::getGender));
+        Map<String, List<String>> map1 = Stream.generate(User::new)
+                .limit(20)
+                .filter(user -> user.getAge() > 18)
+                .sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+                .filter(user -> user.getEmail() != null)
+                .collect(Collectors.groupingBy(User::getGender, Collectors.mapping(User::getName, Collectors.toList())));
 
         System.out.println(map1);
     }
 }
-
-
-
-
-
-
-
