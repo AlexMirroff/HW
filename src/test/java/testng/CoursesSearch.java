@@ -59,10 +59,10 @@ public class CoursesSearch extends UITest {
             }
         }
         String[] itemsText = homePage.getItemsText();
+        homePage.getCoursesMenu().click(); // закрываем меню чтобы вернуться в исходное состояние
         for (int i = 0; i < itemsText.length; i++) {
             Assert.assertEquals(itemsText[i], expectedItemsText[i]);
         }
         log.debug("Actual result: " + Arrays.asList(itemsText));
-        homePage.getCoursesMenu().click(); // закрываем меню чтобы вернуться в исходное состояние
     }
 }
