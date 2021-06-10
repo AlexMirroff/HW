@@ -8,7 +8,7 @@
             </pattern>
         </encoder>
     </appender>
-    <variable name="log.level" value="${log.level:-DEBUG}"/>
+    <variable name="log.level" value="${log.level:-INFO}"/>
     <root level="${log.level}">
         <appender-ref ref="STDOUT"/>
     </root>
