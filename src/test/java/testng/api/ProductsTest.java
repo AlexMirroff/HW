@@ -3,6 +3,7 @@ package testng.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ithillel.api.ApiClient;
 import com.ithillel.api.models.Product;
+import junit.UITest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
@@ -16,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @Slf4j
-public class ProductsTest {
+public class ProductsTest extends UITest {
 
     private ApiClient apiClient = new ApiClient();
 
@@ -26,9 +27,7 @@ public class ProductsTest {
     public void createProduct() {
         ObjectMapper objectMapper = new ObjectMapper();
         Product product = objectMapper.readValue(new File("src/test/resources/product.json"), Product.class);
-        System.out.println(objectMapper.writeValueAsString(product));
         product.setName(getRandomString());
-        log.debug(product.getName());
         // Category category = new Category();
         // category.setName("SUPER");
         // category.setLocation("location");

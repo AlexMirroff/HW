@@ -33,7 +33,7 @@ public class UsersTest extends UITest {
     public Object[][] validData() {
         return new Object[][]{
                 {user1},
-              //  {user2},
+                {user2},
                 {user3},
                 {user4}
         };
