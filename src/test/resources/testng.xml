@@ -1,22 +1,25 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<!--<suite name="Suite">-->
-<!--    <packages>-->
-<!--        <package name="testng"/>-->
-<!--    </packages>-->
-<!--    <test name="All Tests">-->
-<!--        <groups>-->
-<!--            <define name="all">-->
-
-<!--            </define>-->
-<!--        </groups>-->
-<!--    </test>-->
-<!--</suite>-->
-
-<suite name="Cucumber tests">
-    <test name="All">
-        <classes>
-            <class name="cucumber.CucumberTestRunner"/>
-        </classes>
+<suite name="Suite">
+    <packages>
+        <package name="testng.api"/>
+    </packages>
+    <test name="All Tests">
+        <groups>
+            <define name="all">
+                <include name="api"/>
+                <!--            <classes>-->
+                <!--                <class name="testng.api.UsersTest"/>-->
+                <!--            </classes>-->
+            </define>
+        </groups>
     </test>
 </suite>
+
+        <!--<suite name="Cucumber tests">-->
+        <!--    <test name="All">-->
+        <!--        <classes>-->
+        <!--            <class name="cucumber.CucumberTestRunner"/>-->
+        <!--        </classes>-->
+        <!--    </test>-->
+        <!--</suite>-->

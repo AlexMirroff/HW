@@ -18,6 +18,11 @@ public final class ConfigProvider {
     public static final String BASE_SERTIFICATE_URL = prop.getProperty("base.certificate.url");
     public static final int IMPLICIT_WAIT = Integer.parseInt(prop.getProperty("implicit.wait"));
 
+    public static final String API_URL = prop.getProperty("api.url");
+    public static final int API_PORT = Integer.parseInt(prop.getProperty("api.port"));
+    public static final String API_USER = prop.getProperty("api.user");
+    public static final String API_PASSWORD = prop.getProperty("api.password");
+
     //---------------Properties-end--------------------------
 
 
