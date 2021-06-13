@@ -2,11 +2,9 @@ package testng.api;
 
 import com.ithillel.api.models.User;
 import com.ithillel.api.ApiClient;
-import com.ithillel.driver.WebDriverFactory;
 import com.ithillel.pages.SwaggerHomePage;
 import junit.UITest;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UsersTest extends UITest {
 
     private ApiClient apiClient = new ApiClient();
-    // protected final WebDriver driver = WebDriverFactory.getDriver();
 
 
     private final User user1 = new User("userName156", true, "ROLE_USER", "GrfnonOBHRg");
@@ -64,7 +61,7 @@ public class UsersTest extends UITest {
 
     }
 
-    @Test(dataProvider = "validData", priority = 2, groups = {"api"})
+    @Test(dataProvider = "validData", priority = 2, groups = {"api"}, dependsOnMethods = "createUser")
     public void authCreatedUsers(User user) {
         SwaggerHomePage swaggerHomePage = new SwaggerHomePage(driver);
         swaggerHomePage.open();
