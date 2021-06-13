@@ -1,18 +1,23 @@
-package testng;
+package testng.api;
 
 import com.ithillel.api.models.User;
 import com.ithillel.api.ApiClient;
+import com.ithillel.driver.WebDriverFactory;
 import com.ithillel.pages.SwaggerHomePage;
 import junit.UITest;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Slf4j
 public class UsersTest extends UITest {
 
     private ApiClient apiClient = new ApiClient();
+    // protected final WebDriver driver = WebDriverFactory.getDriver();
+
 
     private final User user1 = new User("userName156", true, "ROLE_USER", "GrfnonOBHRg");
     private final User user2 = new User("Кириллический пользователь", true, "ROLE_USER", "кириллический пароль");
@@ -49,14 +54,17 @@ public class UsersTest extends UITest {
         };
     }
 
-    @Test(dataProvider = "validData", priority = 1)
+    @Test(dataProvider = "validData", priority = 1, groups = {"api"})
     public void createUser(User user) {
         apiClient.post("/users/new", user);
         User createdUser = apiClient.get("/users/" + user.getUsername()).getObject(".", User.class);
+        log.info("CREATED" + user.getUsername());
         assertThat(user).isEqualTo(createdUser);
+        log.info("CERTANLY CREATED" + user.getUsername());
+
     }
 
-    @Test(dataProvider = "validData", priority = 3)
+    @Test(dataProvider = "validData", priority = 2, groups = {"api"})
     public void authCreatedUsers(User user) {
         SwaggerHomePage swaggerHomePage = new SwaggerHomePage(driver);
         swaggerHomePage.open();
@@ -71,7 +79,7 @@ public class UsersTest extends UITest {
         assertThat(swaggerHomePage.getSwaggerUI_Btn().isDisplayed()).isTrue();
     }
 
-    @Test(dataProvider = "invalidData", priority = 4)
+    @Test(dataProvider = "invalidData", priority = 3, groups = {"api"})
     public void authInvalidCredentials(User user) {
         SwaggerHomePage swaggerHomePage = new SwaggerHomePage(driver);
         swaggerHomePage.open();
@@ -86,7 +94,7 @@ public class UsersTest extends UITest {
         assertThat(swaggerHomePage.getH2().isDisplayed()).isTrue();
     }
 
-    @Test(dataProvider = "validData", priority = 5)
+    @Test(dataProvider = "validData", priority = 4, groups = {"api"})
     public void deleteCreatedUsers(User user) {
         apiClient.delete("/users/rm/" + user.getUsername());
         String response = apiClient.getNonExistent("/users/" + user.getUsername());

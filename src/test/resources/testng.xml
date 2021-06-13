@@ -2,12 +2,17 @@
 
 <suite name="Suite">
     <packages>
-        <package name="testng"/>
+        <package name="testng.api"/>
     </packages>
-    <test name="users">
-        <classes>
-            <class name="testng.UsersTest"/>
-        </classes>
+    <test name="All Tests">
+        <groups>
+            <define name="all">
+                <include name="api"/>
+                <!--            <classes>-->
+                <!--                <class name="testng.api.UsersTest"/>-->
+                <!--            </classes>-->
+            </define>
+        </groups>
     </test>
 </suite>
 
