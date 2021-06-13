@@ -33,7 +33,7 @@ public class UsersTest extends UITest {
     public Object[][] validData() {
         return new Object[][]{
                 {user1},
-                {user2},
+              //  {user2},
                 {user3},
                 {user4}
         };
@@ -55,10 +55,7 @@ public class UsersTest extends UITest {
     public void createUser(User user) {
         apiClient.post("/users/new", user);
         User createdUser = apiClient.get("/users/" + user.getUsername()).getObject(".", User.class);
-        log.info("CREATED" + user.getUsername());
         assertThat(user).isEqualTo(createdUser);
-        log.info("CERTANLY CREATED" + user.getUsername());
-
     }
 
     @Test(dataProvider = "validData", priority = 2, groups = {"api"}, dependsOnMethods = "createUser")
