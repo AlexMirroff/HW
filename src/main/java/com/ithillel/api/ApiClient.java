@@ -43,8 +43,10 @@ public class ApiClient {
 //       objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 //        RestAssuredConfig config = RestAssuredConfig.config()
 //                .objectMapperConfig(new ObjectMapperConfig().jackson2ObjectMapperFactory((type, s) -> objectMapper));
+        if (log.isDebugEnabled()) {
+            RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        }
 
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         requestSpec = new RequestSpecBuilder()
                 .setBaseUri(apiUrl)
                 .setPort(apiPort)
