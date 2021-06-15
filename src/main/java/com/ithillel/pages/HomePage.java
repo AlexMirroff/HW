@@ -17,7 +17,7 @@ public class HomePage extends Page {
     @FindBy(css = "div.section-content > div > svg")
     private WebElement logo;
 
-    @FindBy(css = "#coursesMenuDesktopTrigger")
+    @FindBy(css = "ul.site-nav-menu_list > li:nth-child(2)")
     private WebElement coursesMenu;
 
     @FindBy(css = "#coursesMenuSearchField > input")

@@ -17,15 +17,15 @@ public class CoursesSearch extends UITest {
     @DataProvider
     public Object[][] data() {
         return new Object[][]{
-                {"front end", new String[]{"Front-end Pro", "Front-End Basic", "ІТ Recruitment"}},
+                {"front end", new String[]{"Front-end Pro", "Front-end Basic", "ІТ Recruitment"}},
                 {"qa", new String[]{"QA Automation", "QA Manual", "QA Automation — Python", "Сертификация ISTQB для тестировщиков"}},
-                {"java", new String[]{"Java Elementary", "Introduction Java", "Java Enterprise"}},
-                {"frontend", new String[]{"Front-End Basic"}},
+                {"java", new String[]{"Java Elementary", "Основы Java", "Java Enterprise"}},
+                {"frontend", new String[]{"Front-end Basic"}},
                 {"дизайн", new String[]{"Основы дизайна", "UI/UX Design"}}
         };
     }
 
-    @Test
+    @Test(groups = {"ui"})
     public void homePageOpen() {
 
         HomePage homePage = new HomePage(driver);
@@ -35,10 +35,11 @@ public class CoursesSearch extends UITest {
         log.debug("Homepage opened");
     }
 
-    @Test(dependsOnMethods = "homePageOpen", dataProvider = "data")
-    public void courseSearch(String input, String[] expectedItemsText) {
+    @Test(dependsOnMethods = "homePageOpen", dataProvider = "data", groups = {"ui"})
+    public void courseSearch(String input, String[] expectedItemsText) throws InterruptedException {
         HomePage homePage = new HomePage(driver);
         log.debug("Input: \"" + input + "\"\tExpected result: " + Arrays.asList(expectedItemsText));
+        Thread.sleep(500); // вылез ElementNotInteractableException, добавил задежрку просто
         homePage.getCoursesMenu().click();
         homePage.getCoursesSearchField().clear();
         homePage.getCoursesSearchField().sendKeys(input);
