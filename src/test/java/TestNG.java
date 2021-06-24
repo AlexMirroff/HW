@@ -9,6 +9,7 @@ public class TestNG {
     @Test(priority = 1)
     public void test2() {
         System.out.println("priority1");
+        System.out.println("русский");
     }
 
 
