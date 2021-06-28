@@ -9,7 +9,7 @@ repositories {
 
 allure {
     configuration = 'compile'
-    resultsDir = file("${project.projectDir}/allure-results")
+    resultsDir = file("${project.buildDir}/allure-results")
 }
 
 group = 'org.ithillel'
