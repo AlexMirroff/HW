@@ -9,7 +9,7 @@ repositories {
 
 allure {
     configuration = 'compile'
-    resultsDir = file("${project.buildDir}/allure-results")
+    resultsDir = file("C:\\Users\\MIRROFF\\IdeaProjects\\HW\\build\\allure-results")
 }
 
 group = 'org.ithillel'
@@ -34,8 +34,6 @@ test {
         if (project.hasProperty('api')) {
             includeGroups'api'
         }
-        //C:\Users\MIRROFF\IdeaProjects\HW\target\allure-results
-        //C:\Users\MIRROFF\IdeaProjects\HW\build\allure-results
     }
 }
 
