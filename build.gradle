@@ -8,7 +8,7 @@ repositories {
 }
 
 allure {
-    configuration = 'compile'
+    configuration = 'test'
     resultsDir = file("C:\\Users\\MIRROFF\\IdeaProjects\\HW\\build\\allure-results")
 }
 
