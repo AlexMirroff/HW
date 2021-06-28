@@ -13,7 +13,6 @@ allure {
     // reportDir = file("${project.buildDir}/allure-results")
     autoconfigure = true
     aspectjweaver = true
-    allureJavaVersion = JavaVersion.VERSION_1_8
 }
 
 group = 'org.ithillel'
