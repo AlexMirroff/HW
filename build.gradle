@@ -9,10 +9,10 @@ repositories {
 
 allure {
     configuration = 'compile'
-    resultsDir = file("${project.buildDir}/allure-results")
-    // reportDir = file("${project.buildDir}/allure-results")
-    autoconfigure = true
-    aspectjweaver = true
+    //resultsDir = file("${project.buildDir}/allure-results")
+    reportDir = file("${project.buildDir}/allure-results")
+    //autoconfigure = true
+    //aspectjweaver = true
 }
 
 group = 'org.ithillel'
