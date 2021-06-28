@@ -24,9 +24,16 @@ tasks.withType(JavaCompile) {
 
 
 
-tasks.named('test') {
+test {
     useTestNG() {
         suites("src/test/resources/testng.xml")
+        testLogging.showStandardStreams = true
+        if (project.hasProperty('ui')) {
+            includeGroups'ui'
+        }
+        if (project.hasProperty('api')) {
+            includeGroups'api'
+        }
     }
 }
 
