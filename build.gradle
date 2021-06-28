@@ -8,8 +8,9 @@ repositories {
 }
 
 allure {
-    configuration = 'test'
-    resultsDir = file("C:\\Users\\MIRROFF\\IdeaProjects\\HW\\build\\allure-results")
+    configuration = 'compile'
+    resultsDir = file("${project.absoluteProjectPath()}/build/allure-results")
+
 }
 
 group = 'org.ithillel'
