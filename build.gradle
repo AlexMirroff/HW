@@ -10,7 +10,7 @@ repositories {
 allure {
     configuration = 'compile'
     resultsDir = file("${project.absoluteProjectPath()}/build/allure-results")
-    reportDir = file("${project.absoluteProjectPath()}/build/allure-results")
+   // reportDir = file("${project.absoluteProjectPath()}/build/allure-results")
    // autoconfigure = true
     //aspectjweaver = true
 
