@@ -10,7 +10,7 @@ repositories {
 allure {
     configuration = 'compile'
     //resultsDir = file("${project.buildDir}/allure-results")
-    resultsDir = file("C:\\Program Files (x86)\\Jenkins\\workspace\\HW\\allure-report")
+    resultsDir = file("${project.buildDir}/allure-results")
     //autoconfigure = true
     aspectjweaver = true
 }
