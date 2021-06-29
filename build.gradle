@@ -12,7 +12,7 @@ allure {
     //resultsDir = file("${project.buildDir}/allure-results")
     resultsDir = file("C:\\Program Files (x86)\\Jenkins\\workspace\\HW\\allure-report")
     //autoconfigure = true
-    //aspectjweaver = true
+    aspectjweaver = true
 }
 
 group = 'org.ithillel'
