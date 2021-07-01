@@ -1,49 +1,40 @@
 package com.ithillel.pages;
 
-import com.ithillel.utils.ConfigProvider;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import lombok.Data;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 
-import static com.ithillel.utils.WaitUtils.waitUntilElementIsVisible;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.ithillel.utils.ConfigProvider.API_PORT;
+import static com.ithillel.utils.ConfigProvider.API_URL;
 
 @Data
 public class SwaggerHomePage extends Page {
 
-    @FindBy(xpath = "//h2[contains(text(),'Please sign in')]")
-    private WebElement h2;
+    private SelenideElement h2 = $(By.xpath("//h2[contains(text(),'Please sign in')]"));
 
-    @FindBy(css = "#username")
-    private WebElement usernameField;
+    private SelenideElement usernameField = $("#username");
 
-    @FindBy(css = "#password")
-    private WebElement passField;
+    private SelenideElement passField = $("#password");
 
-    @FindBy(css = "body > div > form > button")
-    private WebElement singInBtn;
+    private SelenideElement singInBtn = $("body > div > form > button");
 
-    @FindBy(css = "#home > div > div > div > button")
-    private WebElement swaggerUI_Btn;
+    private SelenideElement swaggerUI_Btn = $("#home > div > div > div > button");
 
-    @FindBy(css = ".alert.alert-danger")
-    private WebElement loginErrorDiv;
+    private SelenideElement loginErrorDiv = $(".alert.alert-danger");
 
-
-    public SwaggerHomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     @Override
     public void open() {
-        super.driver.get(ConfigProvider.API_URL + ":" + ConfigProvider.API_PORT);
+        Selenide.open(API_URL + ":" + API_PORT);
         ensureOpen();
     }
 
     @Override
     public void ensureOpen() {
-        waitUntilElementIsVisible(super.driver, h2);
+        h2.shouldBe(Condition.visible);
     }
 }

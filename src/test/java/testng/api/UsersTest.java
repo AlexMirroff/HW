@@ -1,5 +1,6 @@
 package testng.api;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.ithillel.api.models.User;
 import com.ithillel.api.ApiClient;
 import com.ithillel.pages.SwaggerHomePage;
@@ -60,7 +61,7 @@ public class UsersTest extends UITest {
 
     @Test(dataProvider = "validData", priority = 2, groups = {"api"}, dependsOnMethods = "createUser")
     public void authCreatedUsers(User user) {
-        SwaggerHomePage swaggerHomePage = new SwaggerHomePage(driver);
+        SwaggerHomePage swaggerHomePage = new SwaggerHomePage();
         swaggerHomePage.open();
         swaggerHomePage
                 .getUsernameField()
@@ -69,13 +70,13 @@ public class UsersTest extends UITest {
                 .getPassField()
                 .sendKeys(user.getPassword());
         swaggerHomePage.getSingInBtn().click();
-        driver.manage().deleteAllCookies();
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
         assertThat(swaggerHomePage.getSwaggerUI_Btn().isDisplayed()).isTrue();
     }
 
     @Test(dataProvider = "invalidData", priority = 3, groups = {"api"})
     public void authInvalidCredentials(User user) {
-        SwaggerHomePage swaggerHomePage = new SwaggerHomePage(driver);
+        SwaggerHomePage swaggerHomePage = new SwaggerHomePage();
         swaggerHomePage.open();
         swaggerHomePage
                 .getUsernameField()
@@ -84,7 +85,7 @@ public class UsersTest extends UITest {
                 .getPassField()
                 .sendKeys(user.getPassword());
         swaggerHomePage.getSingInBtn().click();
-        driver.manage().deleteAllCookies();
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
         assertThat(swaggerHomePage.getH2().isDisplayed()).isTrue();
     }
 

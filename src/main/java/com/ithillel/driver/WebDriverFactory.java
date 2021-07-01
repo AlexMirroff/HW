@@ -1,5 +1,6 @@
 package com.ithillel.driver;
 
+import com.codeborne.selenide.Configuration;
 import com.ithillel.utils.ConfigProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import static com.codeborne.selenide.Configuration.*;
 import static com.ithillel.utils.ConfigProvider.IMPLICIT_WAIT;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -18,6 +20,16 @@ public class WebDriverFactory {
     private static final String BROWSER = System.getProperty("browser");
 
     private static WebDriver driver;
+
+    public static void setupDriver() {
+        baseUrl = ConfigProvider.BASE_URL;
+        browser = ConfigProvider.BROWSER;
+        System.getProperty("chromeoptions.args", "--disable-infobars");
+        // startMaximized=true;
+        headless = false;
+        timeout = 10000;
+    }
+
 
     public static WebDriver getDriver() {
         String browserType = BROWSER != null ? BROWSER : ConfigProvider.BROWSER;

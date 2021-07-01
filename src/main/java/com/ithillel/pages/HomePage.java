@@ -1,5 +1,9 @@
 package com.ithillel.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import com.ithillel.utils.ConfigProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,51 +12,46 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.ithillel.utils.WaitUtils.waitUntilElementIsVisible;
 
 
 public class HomePage extends Page {
 
 
-    @FindBy(css = "div.section-content > div > svg")
-    private WebElement logo;
+    private SelenideElement logo = $("div.section-content > div > svg");
 
-    @FindBy(css = "ul.site-nav-menu_list > li:nth-child(2)")
-    private WebElement coursesMenu;
+    private SelenideElement coursesMenu = $("ul.site-nav-menu_list > li:nth-child(2)");
 
-    @FindBy(css = "#coursesMenuSearchField > input")
-    private WebElement coursesSearchField;
+    private SelenideElement coursesSearchField = $("#coursesMenuSearchField > input");
 
-    @FindBy(css = ".search-panel_screen.-result > div > ul > li > a > div > p")
-    private List<WebElement> foundItems;
+    @FindBy(css = "")
+    private ElementsCollection foundItems = $$(".search-panel_screen.-result > div > ul > li > a > div > p");
 
 
-    public WebElement getCoursesSearchField() {
+    public SelenideElement getCoursesSearchField() {
         return coursesSearchField;
     }
 
-    public WebElement getCoursesMenu() {
+    public SelenideElement getCoursesMenu() {
         return coursesMenu;
     }
 
-    public List<WebElement> getFoundItems() {
+    public ElementsCollection getFoundItems() {
         return foundItems;
     }
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     @Override
     public void open() {
-        super.driver.get(ConfigProvider.BASE_URL);
+        Selenide.open("/");
         ensureOpen();
     }
 
     @Override
     public void ensureOpen() {
-        waitUntilElementIsVisible(super.driver, logo);
+        logo.shouldBe(Condition.visible);
     }
 
     public String[] getItemsText() {
@@ -62,6 +61,4 @@ public class HomePage extends Page {
         }
         return itemsText;
     }
-
-
 }

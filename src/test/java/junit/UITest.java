@@ -1,18 +1,20 @@
 package junit;
 
-import com.ithillel.driver.WebDriverFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.lang.reflect.Method;
 
+import static com.ithillel.driver.WebDriverFactory.setupDriver;
+
 @Slf4j
 public class UITest {
 
-    protected final WebDriver driver = WebDriverFactory.getDriver();
+    public UITest() {
+        setupDriver();
+    }
 
     @BeforeMethod
     public void testStartedLog(Method method) {

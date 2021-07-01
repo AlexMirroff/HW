@@ -28,7 +28,7 @@ public class CoursesSearch extends UITest {
     @Test(groups = {"ui"})
     public void homePageOpen() {
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         log.debug("Opening homepage...");
         homePage.open();
         Assert.assertTrue(homePage.getCoursesMenu().isDisplayed());
@@ -37,7 +37,7 @@ public class CoursesSearch extends UITest {
 
     @Test(dependsOnMethods = "homePageOpen", dataProvider = "data", groups = {"ui"})
     public void courseSearch(String input, String[] expectedItemsText) throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         log.debug("Input: \"" + input + "\"\tExpected result: " + Arrays.asList(expectedItemsText));
         Thread.sleep(500); // вылез ElementNotInteractableException, добавил задежрку просто
         homePage.getCoursesMenu().click();
